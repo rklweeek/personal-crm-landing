@@ -1,0 +1,36 @@
+---
+import { Picture } from 'astro:assets';
+import AppButton from './AppButton.astro';
+import portraitImage from '../assets/cta-portrait.webp';
+---
+
+<section>
+  <div
+    class="mx-auto flex max-w-narrow flex-col items-center gap-5 px-gutter pt-16 text-center lg:max-w-page lg:gap-6 lg:pt-32"
+  >
+    <div
+      data-reveal
+      class="relative -mx-gutter -mt-6 -mb-2 h-85 self-stretch overflow-hidden mask-portrait lg:mx-0 lg:-mt-12 lg:-mb-4 lg:h-105 lg:w-[min(100%,820px)] lg:self-auto lg:mask-portrait-wide"
+    >
+      <div data-blur="in" class="absolute inset-0">
+        <Picture
+          src={portraitImage}
+          alt="Портрет улыбающегося человека у окна"
+          formats={['avif', 'webp']}
+          fallbackFormat="webp"
+          class="size-full object-cover"
+        />
+      </div>
+    </div>
+
+    <h2 data-reveal class="mt-2 text-h2-cta lg:mt-4 lg:max-w-205">
+      С кем вы давно хотели <span class="text-accent">связаться?</span>
+    </h2>
+    <p data-reveal class="text-lead text-pretty text-muted lg:max-w-135">
+      Начните с одного человека: добавьте контакт, запишите важную деталь и выберите день для сообщения.
+    </p>
+    <div data-reveal class="mt-2 self-stretch lg:mt-3 lg:self-auto">
+      <AppButton label="Добавить первый контакт" size="cta" />
+    </div>
+  </div>
+</section>

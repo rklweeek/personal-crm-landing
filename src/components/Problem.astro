@@ -1,0 +1,67 @@
+---
+import { Picture } from 'astro:assets';
+import problemImage from '../assets/problem-cards.webp';
+
+const questions = [
+  { text: 'Кто из знакомых мог бы помочь с этой задачей?', side: 'left' },
+  { text: 'Мы договаривались созвониться — когда именно?', side: 'right' },
+  { text: 'Давно не общались. С чего теперь начать?', side: 'left' },
+] as const;
+---
+
+<section class="bg-white">
+  <!-- Mobile: one column (heading, photo, text...). Desktop: text | photo grid.
+       `contents` + `order` keep a single DOM for both orders. -->
+  <div class="mx-auto flex max-w-narrow flex-col gap-6 px-gutter py-section lg:max-w-page lg:gap-16">
+    <div
+      class="contents lg:grid lg:grid-cols-[repeat(auto-fit,minmax(min(100%,440px),1fr))] lg:items-center lg:gap-14"
+    >
+      <div class="contents lg:flex lg:flex-col lg:gap-7">
+        <h2 data-reveal class="order-1 text-h2 lg:order-none">
+          Знакомств много. <span class="text-accent">Помнить всё — сложно</span>
+        </h2>
+        <p data-reveal class="order-3 text-body text-pretty text-muted lg:order-none lg:max-w-125">
+          После знакомства кажется, что вы всё запомните. Через месяц уже трудно найти переписку,
+          вспомнить детали разговора и вернуться к обещанному.
+        </p>
+      </div>
+
+      <div
+        data-reveal
+        class="relative order-2 -mx-gutter -my-2 h-95 overflow-hidden mask-fade-y lg:order-none lg:-my-10 lg:h-135 lg:mask-vignette"
+      >
+        <div data-blur="out" class="absolute inset-0">
+          <Picture
+            src={problemImage}
+            alt="Визитки и бейдж с конференции на деревянном столе"
+            formats={['avif', 'webp']}
+            fallbackFormat="webp"
+            class="size-full object-cover"
+          />
+        </div>
+      </div>
+    </div>
+
+    <ul
+      class="order-4 flex flex-col gap-3 lg:order-none lg:grid lg:grid-cols-[repeat(auto-fit,minmax(min(100%,280px),1fr))] lg:gap-5"
+    >
+      {
+        questions.map(({ text, side }) => (
+          <li
+            data-reveal
+            class:list={[
+              'max-w-80.5 rounded-bubble bg-bubble px-4 py-3.5 text-question lg:max-w-none lg:self-stretch lg:px-6.5 lg:py-6',
+              side === 'left' ? 'self-start rounded-bl-bubble-tail' : 'self-end rounded-br-bubble-tail lg:mt-8',
+            ]}
+          >
+            «{text}»
+          </li>
+        ))
+      }
+    </ul>
+
+    <p data-reveal class="order-5 mt-2 text-statement font-medium text-pretty lg:order-none lg:mt-0 lg:max-w-190 lg:text-balance">
+      Без понятной системы даже ценные знакомства <span class="text-accent">постепенно теряются из виду.</span>
+    </p>
+  </div>
+</section>

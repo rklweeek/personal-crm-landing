@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="./image-slot.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#faf8f4;-webkit-font-smoothing:antialiased}
+a{color:#F15534;text-decoration:none}
+a:hover{opacity:.85}
+</style>
+</helmet>
+<main data-screen-label="Landing desktop" style="background:#faf8f4;color:#282828;font-family:'Onest',sans-serif;overflow:hidden">
+
+  <header style="max-width:1280px;margin:0 auto;padding:28px 48px;box-sizing:border-box;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2">
+    <span style="letter-spacing:.04em;text-transform:uppercase;font-weight:600;font-size:15px">Личная CRM</span>
+    <a href="#" style="text-transform:uppercase;letter-spacing:.04em;font-size:13px;font-weight:500;color:#282828;border-bottom:1px solid #F15534;padding-bottom:2px">Открыть</a>
+  </header>
+
+  <!-- Hero -->
+  <section data-screen-label="01 Hero" style="position:relative;min-height:clamp(620px,calc(100vh - 90px),860px);display:flex;align-items:center">
+    <div style="position:absolute;top:0;bottom:0;right:0;left:calc(max(48px, (100vw - 1280px) / 2 + 48px) + min(540px, 40vw) + 16px);overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 34%),linear-gradient(180deg,transparent 0%,#000 14%,#000 72%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0%,#000 34%),linear-gradient(180deg,transparent 0%,#000 14%,#000 72%,transparent 100%);mask-composite:intersect">
+      <div style="position:absolute;inset:0;filter:{{ heroBlur }};transform:{{ heroZoom }}">
+        <image-slot id="v3-hero" shape="rect" src="assets/kitchen-friends-film.png" placeholder="Друзья за столом"></image-slot>
+      </div>
+    </div>
+    <div style="position:absolute;right:max(48px,calc((100vw - 1280px) / 2 + 48px));bottom:22%;pointer-events:none;background:rgba(250,248,244,.94);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;font-family:'JetBrains Mono',monospace;font-size:12px;opacity:{{ tagO }};transform:{{ tagT }}">
+      <span style="font-weight:500">Марина · познакомились в Казани</span>
+      <span style="color:#F15534">написать в пятницу →</span>
+    </div>
+    <div style="position:relative;width:100%;max-width:1280px;margin:0 auto;padding:0 48px 72px;box-sizing:border-box;pointer-events:none">
+      <div style="max-width:min(540px,40vw);display:flex;flex-direction:column;gap:32px;pointer-events:auto">
+        <h1 style="margin:0;font-weight:600;font-size:clamp(36px,4.6vw,68px);line-height:1;letter-spacing:-.03em;text-transform:uppercase;text-wrap:balance;opacity:{{ o1 }};transform:{{ t1 }}">Не теряйте связь с <span style="color:#F15534">важными людьми</span></h1>
+        <p style="margin:0;max-width:460px;font-size:19px;line-height:1.5;color:#5f5b55;text-wrap:pretty;opacity:{{ o2 }};transform:{{ t2 }}">Личная CRM для друзей, коллег, партнёров и новых знакомых. Соберите контакты, историю общения и планы на следующую встречу в одном месте.</p>
+        <a href="#" style="align-self:flex-start;display:flex;align-items:center;gap:12px;background:#282828;color:#fff;height:60px;padding:0 32px;border-radius:30px;font-weight:500;font-size:17px;opacity:{{ o3 }};transform:{{ t3 }}"><span>{{ cta }}</span><span style="color:#F15534">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem -->
+  <section data-screen-label="02 Проблема" style="background:#ffffff">
+    <div style="max-width:1280px;margin:0 auto;padding:120px 48px;box-sizing:border-box;display:flex;flex-direction:column;gap:64px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:56px;align-items:center">
+        <div style="display:flex;flex-direction:column;gap:28px">
+          <h2 data-reveal="" style="margin:0;font-weight:600;font-size:clamp(32px,3.6vw,48px);line-height:1.04;letter-spacing:-.025em;text-transform:uppercase;text-wrap:balance">Знакомств много. <span style="color:#F15534">Помнить всё — сложно</span></h2>
+          <p data-reveal="" style="margin:0;max-width:500px;font-size:19px;line-height:1.55;color:#5f5b55;text-wrap:pretty">После знакомства кажется, что вы всё запомните. Через месяц уже трудно найти переписку, вспомнить детали разговора и вернуться к обещанному.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div data-reveal="" data-blur="out" style="position:relative;height:540px;margin:-40px -48px;overflow:hidden;-webkit-mask-image:radial-gradient(ellipse 52% 52% at 50% 50%,#000 34%,transparent 100%);mask-image:radial-gradient(ellipse 52% 52% at 50% 50%,#000 34%,transparent 100%)">
+            <image-slot id="v3-problem" shape="rect" placeholder="Фото 2 · визитки и бейджи, которые теряются"></image-slot>
+          </div>
+          <sc-if value="{{ showPrompts }}" hint-placeholder-val="{{ true }}">
+            <div style="border:1px dashed #F15534;border-radius:12px;padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.55;color:#5f5b55;display:flex;flex-direction:column;gap:6px">
+              <span style="color:#F15534">ФОТО 2 · ПРОМПТ</span>
+              <span>Overhead film photo of a wooden table: a loose pile of business cards, a conference lanyard badge, a coffee cup ring stain, a phone face-down, warm soft daylight, cream and light wood tones, one orange card in the pile, nostalgic, shallow depth of field, 3:2</span>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:20px">
+        <div data-reveal="" style="background:#f3f0ea;border-radius:22px 22px 22px 6px;padding:24px 26px;font-size:20px;line-height:1.35">«Кто из знакомых мог бы помочь с этой задачей?»</div>
+        <div data-reveal="" style="background:#f3f0ea;border-radius:22px 22px 6px 22px;padding:24px 26px;font-size:20px;line-height:1.35;margin-top:32px">«Мы договаривались созвониться — когда именно?»</div>
+        <div data-reveal="" style="background:#f3f0ea;border-radius:22px 22px 22px 6px;padding:24px 26px;font-size:20px;line-height:1.35">«Давно не общались. С чего теперь начать?»</div>
+      </div>
+      <p data-reveal="" style="margin:0;max-width:760px;font-size:clamp(22px,2vw,28px);line-height:1.35;font-weight:500;text-wrap:balance">Без понятной системы даже ценные знакомства <span style="color:#F15534">постепенно теряются из виду.</span></p>
+    </div>
+  </section>
+
+  <!-- Solution -->
+  <section data-screen-label="03 Решение" style="max-width:1280px;margin:0 auto;padding:120px 48px;box-sizing:border-box;display:flex;flex-direction:column;gap:56px">
+    <h2 data-reveal="" style="margin:0;max-width:900px;font-weight:600;font-size:clamp(32px,3.6vw,48px);line-height:1.04;letter-spacing:-.025em;text-transform:uppercase;text-wrap:balance">Всё, что важно знать о человеке, — <span style="color:#F15534">под рукой</span></h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:64px;align-items:start">
+      <div data-reveal="" style="background:#ffffff;border-radius:28px;padding:28px;display:flex;flex-direction:column;gap:20px;box-shadow:0 30px 60px -36px rgba(40,40,40,.35);max-width:480px">
+        <div style="display:flex;align-items:center;gap:16px">
+          <div style="position:relative;width:68px;height:68px;border-radius:50%;overflow:hidden;flex:none"><image-slot id="v3-card-avatar" shape="circle" placeholder="Фото"></image-slot></div>
+          <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
+            <span style="font-weight:600;font-size:22px;line-height:1.1">Марина Лебедева</span>
+            <span style="font-size:14px;color:#8a857d">Продюсер · познакомились в Казани</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <span style="font-size:13px;padding:6px 12px;border-radius:16px;background:#f3f0ea">#конференции</span>
+          <span style="font-size:13px;padding:6px 12px;border-radius:16px;background:#f3f0ea">#медиа</span>
+          <span style="font-size:13px;padding:6px 12px;border-radius:16px;background:#f3f0ea">#партнёры</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;border-top:1px solid #eee9e1;padding-top:18px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;color:#8a857d">ИСТОРИЯ</span>
+          <div style="display:grid;grid-template-columns:60px minmax(0,1fr);gap:12px;font-size:15px;line-height:1.45"><span style="color:#8a857d">12 сен</span><span>Обсудили подкаст о городских проектах. Обещал прислать контакты звукорежиссёра.</span></div>
+          <div style="display:grid;grid-template-columns:60px minmax(0,1fr);gap:12px;font-size:15px;line-height:1.45"><span style="color:#8a857d">03 авг</span><span>Познакомились на конференции, сидели рядом на панели.</span></div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;background:#faf8f4;border-radius:16px;padding:14px 16px">
+          <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:500">Отправить контакты</span><span style="font-size:13px;color:#8a857d">Напоминание · пятница</span></div>
+          <span style="width:10px;height:10px;border-radius:50%;background:#F15534;flex:none"></span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:40px">
+        <div style="display:flex;flex-direction:column">
+          <div data-reveal="" style="display:grid;grid-template-columns:48px minmax(0,1fr);gap:4px 16px;padding:24px 0;border-top:1px solid #e3dfd7">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#F15534;padding-top:4px">01</span>
+            <div style="display:flex;flex-direction:column;gap:8px"><strong style="font-weight:600;font-size:16px;letter-spacing:.03em;text-transform:uppercase">Карточка контакта.</strong><span style="font-size:17px;line-height:1.5;color:#5f5b55">Где познакомились, чем занимается человек и что вас связывает.</span></div>
+          </div>
+          <div data-reveal="" style="display:grid;grid-template-columns:48px minmax(0,1fr);gap:4px 16px;padding:24px 0;border-top:1px solid #e3dfd7">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#F15534;padding-top:4px">02</span>
+            <div style="display:flex;flex-direction:column;gap:8px"><strong style="font-weight:600;font-size:16px;letter-spacing:.03em;text-transform:uppercase">История общения.</strong><span style="font-size:17px;line-height:1.5;color:#5f5b55">Главное из встреч и переписок, общие идеи и договорённости.</span></div>
+          </div>
+          <div data-reveal="" style="display:grid;grid-template-columns:48px minmax(0,1fr);gap:4px 16px;padding:24px 0;border-top:1px solid #e3dfd7">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#F15534;padding-top:4px">03</span>
+            <div style="display:flex;flex-direction:column;gap:8px"><strong style="font-weight:600;font-size:16px;letter-spacing:.03em;text-transform:uppercase">Напоминания.</strong><span style="font-size:17px;line-height:1.5;color:#5f5b55">Написать после знакомства, узнать о новом проекте или поздравить с важной датой.</span></div>
+          </div>
+          <div data-reveal="" style="display:grid;grid-template-columns:48px minmax(0,1fr);gap:4px 16px;padding:24px 0;border-top:1px solid #e3dfd7;border-bottom:1px solid #e3dfd7">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#F15534;padding-top:4px">04</span>
+            <div style="display:flex;flex-direction:column;gap:8px"><strong style="font-weight:600;font-size:16px;letter-spacing:.03em;text-transform:uppercase">Поиск и теги.</strong><span style="font-size:17px;line-height:1.5;color:#5f5b55">Нужные люди по сфере, интересам или контексту знакомства.</span></div>
+          </div>
+        </div>
+        <p data-reveal="" style="margin:0;font-weight:500;font-size:22px;line-height:1.4;text-wrap:pretty">После разговора — короткая заметка и следующий шаг. Перед встречей — быстрый взгляд на историю.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section data-screen-label="04 Выгоды" style="background:#ffffff">
+    <div style="max-width:1280px;margin:0 auto;padding:120px 48px;box-sizing:border-box;display:flex;flex-direction:column;gap:48px">
+      <h2 data-reveal="" style="margin:0;max-width:900px;font-weight:600;font-size:clamp(32px,3.6vw,48px);line-height:1.04;letter-spacing:-.025em;text-transform:uppercase;text-wrap:balance">Больше внимания и <span style="color:#F15534">заботы</span> людям.</h2>
+      <div data-reveal="" data-blur="in" style="position:relative;height:clamp(440px,48vw,760px);margin:-24px calc(50% - 50vw);overflow:hidden;-webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 18%,#000 78%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0%,#000 18%,#000 78%,transparent 100%)">
+        <image-slot id="v3-benefits" shape="rect" placeholder="Фото 4 · встреча: двое снова обнимаются"></image-slot>
+      </div>
+      <sc-if value="{{ showPrompts }}" hint-placeholder-val="{{ true }}">
+        <div style="border:1px dashed #F15534;border-radius:12px;padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.55;color:#5f5b55;display:flex;flex-direction:column;gap:6px">
+          <span style="color:#F15534">ФОТО 4 · ПРОМПТ</span>
+          <span>Candid film photo of two friends warmly hugging at the door of a small sunlit café, one wears an orange scarf, the other holds a paper coffee cup, soft golden morning light, cream and wood tones, genuine joy, shallow depth of field, 21:9</span>
+        </div>
+      </sc-if>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:16px">
+        <div data-reveal="" style="background:#faf8f4;border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:12px">
+          <strong style="font-weight:600;font-size:14px;line-height:1.3;letter-spacing:.03em;text-transform:uppercase">Спокойнее в повседневных делах.</strong>
+          <span style="font-size:16px;line-height:1.5;color:#5f5b55">Не нужно постоянно прокручивать в голове, кому вы ещё не ответили.</span>
+        </div>
+        <div data-reveal="" style="background:#faf8f4;border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:12px">
+          <strong style="font-weight:600;font-size:14px;line-height:1.3;letter-spacing:.03em;text-transform:uppercase">Увереннее в общении.</strong>
+          <span style="font-size:16px;line-height:1.5;color:#5f5b55">Проще продолжить разговор с учётом того, что важно собеседнику.</span>
+        </div>
+        <div data-reveal="" style="background:#faf8f4;border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:12px">
+          <strong style="font-weight:600;font-size:14px;line-height:1.3;letter-spacing:.03em;text-transform:uppercase">Надёжнее в договорённостях.</strong>
+          <span style="font-size:16px;line-height:1.5;color:#5f5b55">Ваши слова чаще превращаются в действия, укрепляя доверие.</span>
+        </div>
+        <div data-reveal="" style="background:#faf8f4;border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:12px">
+          <strong style="font-weight:600;font-size:14px;line-height:1.3;letter-spacing:.03em;text-transform:uppercase">Больше возможностей для сотрудничества.</strong>
+          <span style="font-size:16px;line-height:1.5;color:#5f5b55">Легче увидеть, кого пригласить в проект или познакомить друг с другом.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section data-screen-label="05 Призыв" style="max-width:1280px;margin:0 auto;padding:128px 48px 40px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;text-align:center;gap:24px">
+    <div data-reveal="" data-blur="in" style="position:relative;width:min(100%,820px);height:420px;margin:-48px 0 -16px;overflow:hidden;-webkit-mask-image:radial-gradient(ellipse 56% 58% at 50% 50%,#000 38%,transparent 100%);mask-image:radial-gradient(ellipse 56% 58% at 50% 50%,#000 38%,transparent 100%)">
+      <image-slot id="v3-cta" shape="rect" placeholder="Фото 5 · портрет"></image-slot>
+    </div>
+    <sc-if value="{{ showPrompts }}" hint-placeholder-val="{{ true }}">
+      <div style="max-width:560px;text-align:left;border:1px dashed #F15534;border-radius:12px;padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.55;color:#5f5b55;display:flex;flex-direction:column;gap:6px">
+        <span style="color:#F15534">ФОТО 5 · ПРОМПТ</span>
+        <span>Close film portrait of a friendly person looking slightly off camera with a soft smile, like an old friend you haven't seen in years, warm window light, cream background, muted natural colors, square crop</span>
+      </div>
+    </sc-if>
+    <h2 data-reveal="" style="margin:16px 0 0;max-width:820px;font-weight:600;font-size:clamp(36px,4.4vw,60px);line-height:1.02;letter-spacing:-.03em;text-transform:uppercase;text-wrap:balance">С кем вы давно хотели <span style="color:#F15534">связаться?</span></h2>
+    <p data-reveal="" style="margin:0;max-width:540px;font-size:19px;line-height:1.5;color:#5f5b55;text-wrap:pretty">Начните с одного человека: добавьте контакт, запишите важную деталь и выберите день для сообщения.</p>
+    <a data-reveal="" href="#" style="margin-top:12px;display:flex;align-items:center;gap:12px;background:#282828;color:#fff;height:62px;padding:0 36px;border-radius:31px;font-weight:500;font-size:17px"><span>Добавить первый контакт</span><span style="color:#F15534">→</span></a>
+    <div style="margin-top:112px;align-self:stretch;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8a857d;border-top:1px solid #e3dfd7;padding-top:20px">
+      <span>Личная CRM</span><span>2026</span>
+    </div>
+  </section>
+
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;cta&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Открыть приложение&quot;,&quot;Добавить первый контакт&quot;,&quot;Перейти в приложение&quot;],&quot;default&quot;:&quot;Открыть приложение&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showPrompts&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { t: 0 };
+  componentDidMount() {
+    this.start = performance.now();
+    const loop = () => {
+      const t = performance.now() - this.start;
+      this.setState({ t });
+      if (t < 5000) this.raf = requestAnimationFrame(loop);
+    };
+    loop();
+    const els = document.querySelectorAll('[data-reveal]');
+    els.forEach(el => {
+      el.style.transition = 'opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1), filter .25s linear';
+      el.style.opacity = 0; el.style.transform = 'translateY(28px)';
+    });
+    this.io = new IntersectionObserver(entries => entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      el.style.opacity = 1; el.style.transform = 'none';
+      this.io.unobserve(el);
+    }), { threshold: 0.2 });
+    els.forEach(el => this.io.observe(el));
+    this.blurEls = document.querySelectorAll('[data-blur]');
+    this.onScroll = () => {
+      const vh = window.innerHeight;
+      this.blurEls.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (el.dataset.blur === 'out') {
+          const p = Math.min(1, Math.max(0, (vh * 0.7 - top) / (vh * 0.55)));
+          el.style.filter = 'blur(' + (p * 9).toFixed(2) + 'px) grayscale(' + (p * 0.85).toFixed(2) + ')';
+        } else {
+          const p = Math.min(1, Math.max(0, (vh * 0.95 - top) / (vh * 0.6)));
+          el.style.filter = 'blur(' + ((1 - p) * 16).toFixed(2) + 'px)';
+        }
+      });
+    };
+    document.addEventListener('scroll', this.onScroll, { passive: true, capture: true });
+    window.addEventListener('resize', this.onScroll);
+    this.onScroll();
+  }
+  componentWillUnmount() { cancelAnimationFrame(this.raf); this.io && this.io.disconnect(); document.removeEventListener('scroll', this.onScroll, true); window.removeEventListener('resize', this.onScroll); }
+  renderVals() {
+    const t = this.state.t;
+    const c = x => Math.min(1, Math.max(0, x));
+    const ease = x => 1 - Math.pow(1 - c(x), 3);
+    const soft = x => { x = c(x); return x * x * (3 - 2 * x); };
+    const rev = d => { const p = ease((t - d) / 900); return { o: p, tr: `translateY(${(1 - p) * 20}px)` }; };
+    const r1 = rev(200), r2 = rev(2400), r3 = rev(2700), rt = rev(3300);
+    const f = soft(t / 3200);
+    const showPrompts = this.props.showPrompts ?? false;
+    return {
+      cta: this.props.cta ?? 'Открыть приложение',
+      o1: r1.o, t1: r1.tr, o2: r2.o, t2: r2.tr, o3: r3.o, t3: r3.tr, tagO: rt.o, tagT: rt.tr,
+      heroBlur: `blur(${(1 - f) * 18}px)`, heroZoom: `scale(${1.1 - f * 0.1})`,
+      showPrompts,
+      slotOutline: showPrompts ? '1.5px dashed #F15534' : 'none'
+    };
+  }
+}
+</script>
+</body>
+</html>

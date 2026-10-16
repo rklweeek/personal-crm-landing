@@ -1,0 +1,46 @@
+---
+import ContactCard from './ContactCard.astro';
+
+const features = [
+  { title: 'Карточка контакта.', text: 'Где познакомились, чем занимается человек и что вас связывает.' },
+  { title: 'История общения.', text: 'Главное из встреч и переписок, общие идеи и договорённости.' },
+  { title: 'Напоминания.', text: 'Написать после знакомства, узнать о новом проекте или поздравить с важной датой.' },
+  { title: 'Поиск и теги.', text: 'Нужные люди по сфере, интересам или контексту знакомства.' },
+];
+---
+
+<section>
+  <div class="mx-auto flex max-w-narrow flex-col gap-6 px-gutter py-section lg:max-w-page lg:gap-14">
+    <h2 data-reveal class="text-h2 lg:max-w-225">
+      Всё, что важно знать о человеке, — <span class="text-accent">под рукой</span>
+    </h2>
+
+    <div
+      class="flex flex-col gap-6 lg:grid lg:grid-cols-[repeat(auto-fit,minmax(min(100%,420px),1fr))] lg:items-start lg:gap-16"
+    >
+      <ContactCard />
+
+      <div class="flex flex-col gap-6 lg:gap-10">
+        <ol class="flex flex-col">
+          {
+            features.map(({ title, text }, i) => (
+              <li
+                data-reveal
+                class="grid grid-cols-[36px_minmax(0,1fr)] gap-x-3 gap-y-1 border-t border-line py-4.5 last:border-b lg:grid-cols-[48px_minmax(0,1fr)] lg:gap-x-4 lg:py-6"
+              >
+                <span class="pt-1 font-mono text-index text-accent">{String(i + 1).padStart(2, '0')}</span>
+                <div class="flex flex-col gap-1.5 lg:gap-2">
+                  <strong class="text-feature-title font-semibold tracking-label uppercase">{title}</strong>
+                  <span class="text-feature text-muted">{text}</span>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+        <p data-reveal class="text-summary font-medium text-pretty">
+          После разговора — короткая заметка и следующий шаг. Перед встречей — быстрый взгляд на историю.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

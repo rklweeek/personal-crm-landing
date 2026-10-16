@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Hero from '../components/Hero.astro';
+import Problem from '../components/Problem.astro';
+import Solution from '../components/Solution.astro';
+import Benefits from '../components/Benefits.astro';
+import FinalCta from '../components/FinalCta.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+const title = 'Личная CRM — не теряйте связь с важными людьми';
+const description =
+  'Личная CRM для друзей, коллег, партнёров и новых знакомых. Соберите контакты, историю общения и планы на следующую встречу в одном месте.';
+---
+
+<Layout title={title} description={description}>
+  <SiteHeader />
+  <!-- Inline-size container: full-bleed blocks use cqw (page width without the scrollbar). -->
+  <main class="@container overflow-x-clip">
+    <Hero />
+    <Problem />
+    <Solution />
+    <Benefits />
+    <FinalCta />
+  </main>
+  <SiteFooter />
+</Layout>

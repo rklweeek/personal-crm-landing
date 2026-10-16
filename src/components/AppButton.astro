@@ -1,0 +1,28 @@
+---
+import { PUBLIC_APP_URL } from 'astro:env/client';
+
+interface Props {
+  label: string;
+  size?: 'hero' | 'cta';
+  class?: string;
+}
+
+const { label, size = 'hero', class: className } = Astro.props;
+
+const sizes = {
+  hero: 'h-14 lg:h-15 lg:px-8',
+  cta: 'h-14.5 lg:h-15.5 lg:px-9',
+};
+---
+
+<a
+  href={PUBLIC_APP_URL}
+  class:list={[
+    'flex items-center justify-center gap-2.5 rounded-full bg-ink text-button font-medium text-white lg:gap-3',
+    sizes[size],
+    className,
+  ]}
+>
+  <span>{label}</span>
+  <span class="text-accent" aria-hidden="true">→</span>
+</a>

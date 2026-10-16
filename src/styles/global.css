@@ -1,0 +1,87 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+@layer base {
+  html {
+    /* The mockups rely on the browser default line-height. */
+    line-height: normal;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2 {
+    font-weight: 600;
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:hover {
+    opacity: 0.85;
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+}
+
+/* Photos have no frames: edges dissolve into the section background. */
+@utility mask-fade-y {
+  mask-image: linear-gradient(180deg, transparent 0%, black 16%, black 80%, transparent 100%);
+}
+
+@utility mask-fade-y-wide {
+  mask-image: linear-gradient(180deg, transparent 0%, black 18%, black 78%, transparent 100%);
+}
+
+@utility mask-vignette {
+  mask-image: radial-gradient(ellipse 52% 52% at 50% 50%, black 34%, transparent 100%);
+}
+
+@utility mask-portrait {
+  mask-image: radial-gradient(ellipse 58% 58% at 50% 50%, black 38%, transparent 100%);
+}
+
+@utility mask-portrait-wide {
+  mask-image: radial-gradient(ellipse 56% 58% at 50% 50%, black 38%, transparent 100%);
+}
+
+/* Scroll reveal. Hidden only when JS runs, so the page stays readable without it. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(var(--reveal-shift));
+  transition:
+    opacity 900ms var(--ease-out-soft),
+    transform 900ms var(--ease-out-soft);
+}
+
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+[data-blur] {
+  transition: filter 250ms linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  [data-blur] {
+    filter: none !important;
+    transition: none;
+  }
+}

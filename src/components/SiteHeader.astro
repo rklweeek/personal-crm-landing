@@ -1,0 +1,15 @@
+---
+import { PUBLIC_APP_URL } from 'astro:env/client';
+---
+
+<header
+  class="mx-auto flex max-w-narrow items-center justify-between px-gutter py-5 lg:max-w-page lg:py-7"
+>
+  <span class="text-logo font-semibold tracking-caps uppercase">Личная CRM</span>
+  <a
+    href={PUBLIC_APP_URL}
+    class="border-b border-accent pb-px text-nav font-medium tracking-caps text-ink uppercase lg:pb-0.5"
+  >
+    Открыть
+  </a>
+</header>

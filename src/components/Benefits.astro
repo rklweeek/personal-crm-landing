@@ -1,0 +1,49 @@
+---
+import { Picture } from 'astro:assets';
+import benefitsImage from '../assets/benefits-reunion.webp';
+
+const benefits = [
+  { title: 'Спокойнее в повседневных делах.', text: 'Не нужно постоянно прокручивать в голове, кому вы ещё не ответили.' },
+  { title: 'Увереннее в общении.', text: 'Проще продолжить разговор с учётом того, что важно собеседнику.' },
+  { title: 'Надёжнее в договорённостях.', text: 'Ваши слова чаще превращаются в действия, укрепляя доверие.' },
+  {
+    title: 'Больше возможностей для сотрудничества.',
+    text: 'Легче увидеть, кого пригласить в проект или познакомить друг с другом.',
+  },
+];
+---
+
+<section class="bg-white">
+  <div class="mx-auto flex max-w-narrow flex-col gap-6 px-gutter py-section lg:max-w-page lg:gap-12">
+    <h2 data-reveal class="text-h2 lg:max-w-225">
+      Больше внимания и <span class="text-accent">заботы</span> людям.
+    </h2>
+
+    <!-- Desktop: full window width (main is an inline-size container, so cqw = page width). -->
+    <div
+      data-reveal
+      class="relative -mx-gutter -my-2 h-120 overflow-hidden mask-fade-y lg:mx-[calc(50%-50cqw)] lg:-my-6 lg:h-[clamp(440px,48cqw,760px)] lg:mask-fade-y-wide"
+    >
+      <div data-blur="in" class="absolute inset-0">
+        <Picture
+          src={benefitsImage}
+          alt="Две подруги радостно обнимаются у входа в кафе"
+          formats={['avif', 'webp']}
+          fallbackFormat="webp"
+          class="size-full object-cover"
+        />
+      </div>
+    </div>
+
+    <ul class="grid grid-cols-2 gap-3 lg:grid-cols-[repeat(auto-fit,minmax(min(100%,190px),1fr))] lg:gap-4">
+      {
+        benefits.map(({ title, text }) => (
+          <li data-reveal class="flex flex-col gap-2 rounded-tile bg-paper p-4 lg:gap-3 lg:p-6">
+            <strong class="text-benefit-title font-semibold tracking-label uppercase">{title}</strong>
+            <span class="text-benefit text-muted">{text}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

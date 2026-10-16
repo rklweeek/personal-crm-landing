@@ -1,0 +1,155 @@
+---
+import { Picture } from 'astro:assets';
+import AppButton from './AppButton.astro';
+import heroImage from '../assets/hero-friends.png';
+
+// Crop of the hero photo saved in the mockup (slot "v3-hero" in
+// design/design/.image-slots.state.json): cover-fit scaled by `zoom`, image
+// center shifted by a percentage of the frame size.
+const crop = { zoom: 1.1618, shiftX: '-8.09%', shiftY: '18.26%' };
+const cropVars = [
+  `--photo-ratio: ${heroImage.width / heroImage.height}`,
+  `--photo-zoom: ${crop.zoom}`,
+  `--photo-shift-x: ${crop.shiftX}`,
+  `--photo-shift-y: ${crop.shiftY}`,
+].join('; ');
+---
+
+<section class="hero relative flex flex-col pb-10 lg:flex-row lg:items-center lg:pb-0">
+  <div class="mx-auto w-full max-w-narrow lg:max-w-page lg:px-gutter lg:pb-18">
+    <div class="hero-col flex flex-col lg:gap-8">
+      <h1 class="hero-rise relative mx-gutter mt-4 text-center text-h1 lg:mx-0 lg:mt-0 lg:text-left">
+        Не теряйте связь с <span class="text-accent">важными людьми</span>
+      </h1>
+
+      <div class="hero-photo relative mt-2 h-135 lg:absolute lg:inset-y-0 lg:right-0 lg:mt-0 lg:h-auto">
+        <div class="hero-mask absolute inset-0 overflow-hidden">
+          <div class="hero-focus absolute inset-0" style={cropVars}>
+            <Picture
+              src={heroImage}
+              alt="Три подруги смеются за кухонным столом"
+              formats={['avif', 'webp']}
+              fallbackFormat="webp"
+              widths={[480, 720, 960, heroImage.width]}
+              sizes="(min-width: 1024px) 62vw, 120vw"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
+        </div>
+        <div
+          class="hero-rise hero-rise-tag pointer-events-none absolute bottom-37.5 left-6 flex flex-col gap-0.75 rounded-chip bg-paper/94 px-3 py-2.5 font-mono text-photo-tag lg:bottom-[22%] lg:left-auto lg:gap-1 lg:px-3.5 lg:py-3"
+        >
+          <span class="font-medium">Марина · познакомились в Казани</span>
+          <span class="text-accent">написать в пятницу →</span>
+        </div>
+      </div>
+
+      <p
+        class="hero-rise hero-rise-lead relative mx-gutter text-center text-lead text-pretty text-muted lg:mx-0 lg:max-w-115 lg:text-left"
+      >
+        Личная CRM для друзей, коллег, партнёров и новых знакомых. Соберите контакты, историю общения и
+        планы на следующую встречу в одном месте.
+      </p>
+
+      <AppButton
+        label="Открыть приложение"
+        class="hero-rise hero-rise-cta relative mx-gutter mt-6 lg:mx-0 lg:mt-0 lg:self-start"
+      />
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  /* Photo frame: full width under the heading on mobile; on desktop it fills
+     the space right of the text column, up to the window edge. */
+  .hero-mask {
+    mask-image: linear-gradient(180deg, transparent 0%, black 18%, black 76%, transparent 100%);
+  }
+
+  .hero-focus {
+    container-type: size;
+  }
+
+  /* Same geometry as the mockup's image slot: cover-fit × zoom, shifted center. */
+  .hero-focus img {
+    position: absolute;
+    max-width: none;
+    width: calc(max(100cqw, 100cqh * var(--photo-ratio)) * var(--photo-zoom));
+    height: auto;
+    left: calc(50% + var(--photo-shift-x));
+    top: calc(50% + var(--photo-shift-y));
+    translate: -50% -50%;
+  }
+
+  @media (width >= 64rem) {
+    .hero {
+      min-height: clamp(620px, calc(100vh - 90px), 860px);
+    }
+
+    /* cqw here is the page width (main is an inline-size container). */
+    .hero-col {
+      max-width: min(540px, 40cqw);
+    }
+
+    .hero-photo {
+      left: calc(
+        max(var(--spacing-gutter), (100cqw - var(--container-page)) / 2 + var(--spacing-gutter)) +
+          min(540px, 40cqw) + var(--spacing) * 4
+      );
+    }
+
+    .hero-mask {
+      mask-image:
+        linear-gradient(90deg, transparent 0%, black 34%),
+        linear-gradient(180deg, transparent 0%, black 14%, black 72%, transparent 100%);
+      mask-composite: intersect;
+    }
+
+    .hero-rise-tag {
+      right: max(var(--spacing-gutter), (100cqw - var(--container-page)) / 2 + var(--spacing-gutter));
+    }
+  }
+
+  /* Load animation: a blurry memory comes into focus, then the text appears. */
+  .hero-rise {
+    animation: hero-rise 900ms var(--ease-out-cubic) 200ms backwards;
+  }
+
+  .hero-rise-lead {
+    animation-delay: var(--hero-delay-lead);
+  }
+
+  .hero-rise-cta {
+    animation-delay: var(--hero-delay-cta);
+  }
+
+  .hero-rise-tag {
+    animation-delay: var(--hero-delay-tag);
+  }
+
+  .hero-focus {
+    animation: hero-focus 3200ms var(--ease-smoothstep) backwards;
+  }
+
+  @keyframes hero-rise {
+    from {
+      opacity: 0;
+      transform: translateY(var(--hero-shift));
+    }
+  }
+
+  @keyframes hero-focus {
+    from {
+      filter: blur(var(--hero-blur));
+      transform: scale(var(--hero-zoom));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-rise,
+    .hero-focus {
+      animation: none;
+    }
+  }
+</style>

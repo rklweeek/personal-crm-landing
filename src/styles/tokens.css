@@ -1,0 +1,160 @@
+/*
+ * Design tokens — the only source of colors, fonts, type scale and spacing.
+ * Values come from design/README.md and the HTML mockups in design/.
+ * Mobile-first: the media query at the bottom switches tokens to the
+ * desktop layout (Tailwind `lg`, 1024px), so markup rarely needs `lg:` for them.
+ */
+
+@theme {
+  /* Colors */
+  --color-*: initial;
+  --color-ink: #282828;
+  --color-accent: #f15534;
+  --color-paper: #faf8f4;
+  --color-white: #ffffff;
+  --color-muted: #5f5b55;
+  --color-subtle: #8a857d;
+  --color-bubble: #f3f0ea;
+  --color-line: #e3dfd7;
+  --color-line-soft: #eee9e1;
+
+  /* Fonts */
+  --font-*: initial;
+  --font-sans: "Onest", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Type scale (mobile values; desktop overrides below).
+     Tokens without a line-height keep the browser's `normal`, as in the mockups. */
+  --text-*: initial;
+  --text-logo: 14px;
+  --text-nav: 12px;
+  --text-button: 16px;
+  --text-h1: 34px;
+  --text-h1--line-height: 1.04;
+  --text-h1--letter-spacing: -0.025em;
+  --text-h2: 27px;
+  --text-h2--line-height: 1.04;
+  --text-h2--letter-spacing: -0.025em;
+  --text-h2-cta: 31px;
+  --text-h2-cta--line-height: 1.04;
+  --text-h2-cta--letter-spacing: -0.025em;
+  --text-lead: 16px;
+  --text-lead--line-height: 1.5;
+  --text-body: 16px;
+  --text-body--line-height: 1.55;
+  --text-question: 17px;
+  --text-question--line-height: 1.35;
+  --text-statement: 18px;
+  --text-statement--line-height: 1.45;
+  --text-summary: 19px;
+  --text-summary--line-height: 1.35;
+  --text-feature-title: 14px;
+  --text-feature: 15px;
+  --text-feature--line-height: 1.5;
+  --text-benefit-title: 12.5px;
+  --text-benefit-title--line-height: 1.3;
+  --text-benefit: 13.5px;
+  --text-benefit--line-height: 1.45;
+  --text-index: 11px;
+  --text-footer: 10px;
+  --text-photo-tag: 10px;
+  --text-card-name: 19px;
+  --text-card-name--line-height: 1.1;
+  --text-card-meta: 13px;
+  --text-card-tag: 12px;
+  --text-card-label: 10px;
+  --text-card-note: 13.5px;
+  --text-card-note--line-height: 1.4;
+  --text-card-title: 14px;
+  --text-card-hint: 12px;
+
+  --tracking-caps: 0.04em;
+  --tracking-label: 0.03em;
+  --tracking-mono: 0.06em;
+
+  /* Spacing. Small steps use Tailwind's base `--spacing` scale (4px). */
+  --spacing-gutter: 24px;
+  --spacing-section: 56px;
+  --container-narrow: 640px;
+  --container-page: 1280px;
+
+  /* Shapes */
+  --radius-card: 24px;
+  --radius-inset: 14px;
+  --radius-tile: 16px;
+  --radius-bubble: 18px;
+  --radius-bubble-tail: 4px;
+  --radius-chip: 12px;
+  --shadow-card: 0 24px 50px -30px rgb(40 40 40 / 0.35);
+  --shadow-card-lg: 0 30px 60px -36px rgb(40 40 40 / 0.35);
+
+  /* Motion. Both curves match the mockup's easing functions exactly. */
+  --ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-out-cubic: cubic-bezier(0.333, 1, 0.667, 1);
+  --ease-smoothstep: cubic-bezier(0.333, 0, 0.667, 1);
+}
+
+:root {
+  --reveal-shift: 22px;
+  --hero-shift: 18px;
+  --hero-blur: 16px;
+  --hero-zoom: 1.12;
+  --hero-delay-lead: 2600ms;
+  --hero-delay-cta: 2900ms;
+  --hero-delay-tag: 3300ms;
+}
+
+@media (width >= 64rem) {
+  :root {
+    --text-logo: 15px;
+    --text-nav: 13px;
+    --text-button: 17px;
+    --text-h1: clamp(36px, 4.6vw, 68px);
+    --text-h1--line-height: 1;
+    --text-h1--letter-spacing: -0.03em;
+    --text-h2: clamp(32px, 3.6vw, 48px);
+    --text-h2-cta: clamp(36px, 4.4vw, 60px);
+    --text-h2-cta--line-height: 1.02;
+    --text-h2-cta--letter-spacing: -0.03em;
+    --text-lead: 19px;
+    --text-body: 19px;
+    --text-question: 20px;
+    --text-statement: clamp(22px, 2vw, 28px);
+    --text-statement--line-height: 1.35;
+    --text-summary: 22px;
+    --text-summary--line-height: 1.4;
+    --text-feature-title: 16px;
+    --text-feature: 17px;
+    --text-benefit-title: 14px;
+    --text-benefit: 16px;
+    --text-benefit--line-height: 1.5;
+    --text-index: 12px;
+    --text-footer: 11px;
+    --text-photo-tag: 12px;
+    --text-card-name: 22px;
+    --text-card-meta: 14px;
+    --text-card-tag: 13px;
+    --text-card-label: 11px;
+    --text-card-note: 15px;
+    --text-card-note--line-height: 1.45;
+    --text-card-title: 15px;
+    --text-card-hint: 13px;
+
+    --spacing-gutter: 48px;
+    --spacing-section: 120px;
+
+    --radius-card: 28px;
+    --radius-inset: 16px;
+    --radius-tile: 20px;
+    --radius-bubble: 22px;
+    --radius-bubble-tail: 6px;
+    --radius-chip: 14px;
+
+    --reveal-shift: 28px;
+    --hero-shift: 20px;
+    --hero-blur: 18px;
+    --hero-zoom: 1.1;
+    --hero-delay-lead: 2400ms;
+    --hero-delay-cta: 2700ms;
+  }
+}
