@@ -1,0 +1,43 @@
+# Push to main → build dist/ → rsync --delete to the server → check the home
+# page. The steps live in deploy/.
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+# One deploy at a time; a newer push waits for the running one to finish.
+concurrency:
+  group: production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: ${{ vars.SITE_URL }}
+    steps:
+      - uses: actions/checkout@v7
+      # pnpm version comes from "packageManager" in package.json.
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - name: Mark the build with the commit
+        run: printf '%s\n' "$GITHUB_SHA" > dist/version.txt
+      - name: Upload to the server
+        run: bash deploy/sync.sh dist
+        env:
+          DEPLOY_HOST: ${{ vars.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ vars.DEPLOY_USER }}
+          DEPLOY_KNOWN_HOSTS: ${{ vars.DEPLOY_KNOWN_HOSTS }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+      - name: Smoke test
+        run: bash deploy/smoke.sh "${{ vars.SITE_URL }}" dist/index.html "$GITHUB_SHA"
